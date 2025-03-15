@@ -19,48 +19,59 @@
         <h2>Register to कार्बप्रदाः</h2>
 
         <form id="registerForm">
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Enter the username"
-            required
-          />
-
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter the email"
-            required
-          />
-
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Enter the phone number"
-            required
-          />
-          <div class="password-container">
+          <div class="input-group">
             <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter the password"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter the username"
               required
             />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter the email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Enter the phone number"
+              required
+            />
+          </div>
+
+          <div class="password-container">
+            <div class="input-group">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter the password"
+                required
+              />
+            </div>
             <span id="toggle-password" class="eye-icon">👁️‍🗨️</span>
           </div>
 
           <div class="password-container">
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              placeholder="Enter the confirmed password"
-              required
-            />
+            <div class="input-group">
+              <input
+                type="password"
+                id="confirm-password"
+                name="confirm-password"
+                placeholder="Enter the confirmed password"
+                required
+              />
+            </div>
             <span id="toggle-confirm-password" class="eye-icon">👁️‍🗨️</span>
           </div>
           <p id="password-error" class="error-message"></p>

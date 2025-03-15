@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const registerForm = document.getElementById("register-form");
+  const registerForm = document.getElementById("registerForm");
   const passwordInput = document.getElementById("password");
   const confirmPasswordInput = document.getElementById("confirm-password");
   const passwordError = document.getElementById("password-error");
