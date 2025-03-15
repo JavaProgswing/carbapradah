@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Section</title>
+    <script src="{{ url_for('static', filename='faq.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='faq.css') }}" />
+  </head>
+  <body>
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>What is your return policy?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Our return policy allows you to return items within 30 days of
+              purchase. Please ensure the product is in its original condition.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>How do I track my order?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              You can track your order by logging into your account and visiting
+              the "Order History" section. A tracking link will be provided once
+              your order ships.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Do you offer international shipping?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Yes, we offer international shipping to most countries. Shipping
+              costs and delivery times vary depending on your location.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>How can I contact customer support?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              You can reach our customer support team via email at
+              support@example.com or by calling +1-800-123-4567.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

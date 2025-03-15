@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>कार्बप्रदाः</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}" defer></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='main.css') }}"
+    />
+  </head>
+  <body>
+    <div id="navbar">
+      <div class="navbar">
+        <div class="logo">🌿 कार्बप्रदाः</div>
+        <div class="nav-links">
+          {% if logged_in %}
+            <a href="/logout">Logout</a>
+          {% else %}
+            <a href="/login">Login</a>
+          {% endif %}
+          <a href="#">Home</a>
+          <a href="#about">About Us</a>
+          <a href="/faq">FAQ</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transport Section -->
+    <a href="/transport" class="section-link">
+      <div
+        class="section bg-image fade-in"
+        style="background-image: url('static/images/transport.jpg')"
+      >
+        <div class="overlay"></div>
+        <div class="content">
+          <p class="title">🚜 Transport</p>
+          <p class="description">
+            Empowering farmers with real-time insights to detect and address
+            plant stress for sustainable growth.
+          </p>
+        </div>
+      </div>
+    </a>
+
+    <!-- Smart Soil Monitoring & Predictive Analytics Section -->
+    <div
+      class="section bg-image fade-in"
+      style="background-image: url('static/images/agriculture.jpg')"
+    >
+      <div class="overlay"></div>
+      <div class="content">
+        <p class="title">🌱 AGRICULTURE</p>
+        <div class="info-box">
+          <strong>1️⃣ IoT-Based Real-Time Monitoring</strong><br />
+          📡 Sensors: Soil Moisture, Temperature, MQ-135 VOC.<br />
+          📶 Connectivity: ESP32 transmits data via Wi-Fi to Firebase.<br /><br />
+
+          <strong>2️⃣ Machine Learning Insights</strong><br />
+          🤖 Models: Crop Yield Prediction, Irrigation Optimization.<br /><br />
+
+          <strong>3️⃣ Farmer’s Dashboard</strong><br />
+          📊 Real-time soil data and ML predictions.<br /><br />
+
+          <strong>4️⃣ Smart Alerts</strong><br />
+          📢 Customizable thresholds and notifications.<br />
+        </div>
+      </div>
+    </div>
+    <section
+      id="about"
+      class="section bg-image fade-in"
+      style="background-image: url(static/images/transport.jpg)"
+    >
+      <div class="overlay"></div>
+      <div class="content">
+        <h2 class="title">About कार्बप्रदाः</h2>
+        <div class="about-container">
+          <div class="about-text">
+            <p>
+              कार्बप्रदाः is an innovative platform designed to help individuals
+              and businesses monitor, track, and reduce their carbon footprint
+              across two critical sectors: Agriculture and Transportation.
+            </p>
+            <p>
+              Our mission is to empower users with real-time data and actionable
+              insights to make sustainable choices and contribute to a greener
+              future.
+            </p>
+            <p>
+              Through advanced IoT sensors, machine learning algorithms, and
+              user-friendly dashboards, we provide comprehensive tools to
+              measure and minimize environmental impact.
+            </p>
+          </div>
+          <div class="about-stats">
+            <div class="stat-box">
+              <h3>40%</h3>
+              <p>
+                of global carbon emissions come from agriculture and
+                transportation
+              </p>
+            </div>
+            <div class="stat-box">
+              <h3>15-30%</h3>
+              <p>
+                potential reduction in emissions with proper tracking and
+                optimization
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #000;
+  color: white;
+}
+
+/* Transparent Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4.5rem;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  transition: background 0.4s ease-in-out;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.navbar .logo {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  font-size: 20px; /* Increase font size */
+  font-weight: bold; /* Make text bolder */
+  padding: 10px 15px; /* Add padding for better spacing */
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+  color: azure;
+}
+
+.nav-links a:hover {
+  color: #00ffcc;
+}
+
+/* Sections */
+.section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease-in-out;
+}
+
+.bg-image:hover {
+  transform: scale(1.02);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.section-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 10;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  animation: bounce 1.5s infinite alternate;
+  text-decoration: none;
+}
+
+.description {
+  font-size: 1.5rem;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Info Box */
+.info-box {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  font-size: 1.2rem;
+  max-width: 800px;
+  transition: transform 0.3s;
+}
+
+.info-box:hover {
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+/* Scroll Effect */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* About Section */
+.about-container {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.about-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.stat-box {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-box h3 {
+  font-size: 3rem;
+  color: #3cff97;
+  margin-bottom: 0.5rem;
+}
