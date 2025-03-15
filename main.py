@@ -1,5 +1,10 @@
-from quart import Quart, render_template, redirect, session
+from quart import Quart, render_template, redirect, session, request
+from supabase import create_client, Client
+import os
 
+url: str = os.environ.get("SUPABASE_URL")
+key: str = os.environ.get("SUPABASE_KEY")
+supabase: Client = create_client(url, key)
 app = Quart(__name__)
 
 
@@ -16,6 +21,36 @@ async def login():
         return redirect("/")
 
     return await render_template("login.html")
+
+
+# access_token=eyJhbGciOiJIUzI1NiIsImtpZCI6InpiZzBZNzhob29tejloWnYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2NkcW50bnhoeXBwd2hua2JzbXh1LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJlOTQxNGQxMC1lNjRiLTRjOWYtYjJkNS1mNWMzYmQzYjJiOWEiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzQyMDU2ODQwLCJpYXQiOjE3NDIwNTMyNDAsImVtYWlsIjoieWFzaGFzdmlhbGxlbmt1anVyQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJ5YXNoYXN2aWFsbGVua3VqdXJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiZTk0MTRkMTAtZTY0Yi00YzlmLWIyZDUtZjVjM2JkM2IyYjlhIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoib3RwIiwidGltZXN0YW1wIjoxNzQyMDUzMjQwfV0sInNlc3Npb25faWQiOiI1ZjBhNThmOC1jMDQ0LTQ1YTctOTE4NC0xNDRmODhmYjMzZDUiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.sjAiubAfI9ck0jEk3_GoHlBcutSs9UpP5xURf9LK98g
+# expires_at=1742056840
+# refresh_token=Qf45LkkemAsJjubeFDyMwQ
+@app.route("/login-callback")
+async def login_callback():
+    access_token = request.args.get("access_token")
+    expires_at = request.args.get("expires_at")
+    refresh_token = request.args.get("refresh_token")
+    supabase.auth.set_session(access_token, refresh_token)
+    user = supabase.auth.get_user()
+    session["user"] = user
+    session["logged_in"] = True
+
+
+@app.route("/transport")
+async def transport():
+    if not session.get("logged_in"):
+        return redirect("/")
+
+    return await render_template("transport.html")
+
+
+@app.route("/agriculture")
+async def agriculture():
+    if not session.get("logged_in"):
+        return redirect("/")
+
+    return await render_template("agriculture.html")
 
 
 @app.route("/register")
