@@ -11,8 +11,8 @@ body {
   height: 100vh;
 }
 
-/* Container for the login box */
-.login-container {
+/* Container for the Register box */
+.register-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,8 +20,8 @@ body {
   height: 100%;
 }
 
-/* Login box design */
-.login-box {
+/* Register box design */
+.register-box {
   background: rgba(255, 255, 255, 0.1);
   padding: 50px;
   border-radius: 10px;
@@ -68,8 +68,8 @@ h2 {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Login button */
-.login-btn {
+/* Register button */
+.register-btn {
   width: 100%;
   background: #ffc107;
   color: black;
@@ -81,7 +81,7 @@ h2 {
   margin-top: 10px;
 }
 
-.login-btn:hover {
+.Register-btn:hover {
   background: #e0a800;
 }
 
