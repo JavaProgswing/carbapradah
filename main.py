@@ -1,11 +1,28 @@
 from quart import Quart, render_template, redirect, session, request
 from supabase import create_client, Client
 import os
+from datetime import datetime
 
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
 app = Quart(__name__)
+
+
+@app.before_request
+async def refresh_token():
+    if session.get("logged_in"):
+        expires_at = session.get("expires_at", 0)
+        if (
+            datetime.utcnow().timestamp() > expires_at - 60
+        ):  # Refresh 1 min before expiry
+            try:
+                session_data = supabase.auth.refresh_session()
+                session["expires_at"] = session_data.session.expires_at
+            except Exception:
+                session.pop("logged_in", None)
+                session.pop("user", None)
+                return redirect("/login?error=session_expired")
 
 
 @app.route("/")
@@ -29,12 +46,28 @@ async def login():
 @app.route("/login-callback")
 async def login_callback():
     access_token = request.args.get("access_token")
-    expires_at = request.args.get("expires_at")
     refresh_token = request.args.get("refresh_token")
-    supabase.auth.set_session(access_token, refresh_token)
-    user = supabase.auth.get_user()
-    session["user"] = user
-    session["logged_in"] = True
+    expires_at = request.args.get("expires_at")
+
+    if not access_token or not refresh_token:
+        return redirect("/login?error=missing_token")
+
+    try:
+        supabase.auth.set_session(access_token, refresh_token)
+        user = supabase.auth.get_user()
+
+        if user:
+            session["user"] = (
+                user  # Store user info safely (avoid storing tokens in session)
+            )
+            session["logged_in"] = True
+            session["expires_at"] = int(expires_at)  # Store expiration timestamp
+            return redirect("/")
+        else:
+            return redirect("/login?error=invalid_user")
+
+    except Exception as e:
+        return redirect(f"/login?error={str(e)}")
 
 
 @app.route("/transport")
@@ -42,7 +75,7 @@ async def transport():
     if not session.get("logged_in"):
         return redirect("/")
 
-    return await render_template("transport.html")
+    return await render_template("transport.html", user=session.get("user"))
 
 
 @app.route("/agriculture")
