@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault(); // Prevent form submission
 
     const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("current-password").value.trim();
+    const password = document.getElementById("password").value.trim();
 
     if (username === "" || password === "") {
       alert("Please fill in all fields!");
@@ -38,6 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Show/Hide Password
 function togglePassword() {
-  const passwordField = document.getElementById("current-password");
+  const passwordField = document.getElementById("password");
   passwordField.type = passwordField.type === "password" ? "text" : "password";
 }

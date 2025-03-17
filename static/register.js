@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("registerForm");
-  const passwordInput = document.getElementById("current-password");
+  const passwordInput = document.getElementById("password");
   const confirmPasswordInput = document.getElementById("confirm-password");
   const passwordError = document.getElementById("password-error");
   const togglePassword = document.getElementById("toggle-password");
