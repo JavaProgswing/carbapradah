@@ -9,14 +9,18 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
   function validatePasswords() {
+    if (passwordInput.value.length < 6) {
+      passwordError.textContent = "Password must be at least 6 characters long!";
+      return false;
+    }
     if (passwordInput.value !== confirmPasswordInput.value) {
       passwordError.textContent = "Passwords do not match!";
       return false;
-    } else {
-      passwordError.textContent = "";
-      return true;
     }
+    passwordError.textContent = "";
+    return true;
   }
+  
 
   function toggleVisibility(inputField, icon) {
     if (inputField.type === "password") {
