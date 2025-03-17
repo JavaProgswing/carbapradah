@@ -13,25 +13,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("https://api-carbapradah.vercel.app/login", {
         method: "POST",
-        body: JSON.stringify({ 
-          username:username, 
-          password:password }),
         headers: {
-          "Content-Type": "application/json; charset=UTF-8"
-        }
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name: username, password }),
       });
-      console.log(response);
-      if (!response.ok) {
-        throw new Error("Login failed!");
-      }
 
       const data = await response.json();
-      alert("Login successful!");
+
+      if (response.ok) {
+        alert("Login successful!");
+        window.location.href = "/"; // Redirect to home page
+      } else {
+        alert(`Error: ${data.message || "Invalid credentials!"}`);
+      }
     } catch (error) {
       console.error("Error:", error);
-      alert("Login error. Please try again.");
+      alert("Login failed. Please try again.");
     }
   });
 });
@@ -39,5 +39,5 @@ document.addEventListener("DOMContentLoaded", function () {
 // Show/Hide Password
 function togglePassword() {
   const passwordField = document.getElementById("password");
-  passwordField.type = passwordField.type === "password" ? "text" : "password";
+  passwordField.type = passwordField.type === "password" ? "text" : "password";
 }

@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "toggle-confirm-password"
   );
 
-  // Function to check if passwords match
   function validatePasswords() {
     if (passwordInput.value !== confirmPasswordInput.value) {
       passwordError.textContent = "Passwords do not match!";
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Show/hide password when clicking the eye icon
   function toggleVisibility(inputField, icon) {
     if (inputField.type === "password") {
       inputField.type = "text";
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Attach event listeners
   confirmPasswordInput.addEventListener("input", validatePasswords);
   togglePassword.addEventListener("click", () =>
     toggleVisibility(passwordInput, togglePassword)
@@ -39,10 +36,39 @@ document.addEventListener("DOMContentLoaded", function () {
     toggleVisibility(confirmPasswordInput, toggleConfirmPassword)
   );
 
-  // Prevent form submission if passwords don't match
-  registerForm.addEventListener("submit", function (event) {
-    if (!validatePasswords()) {
-      event.preventDefault();
+  registerForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    if (!validatePasswords()) return;
+
+    const formData = {
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      password: passwordInput.value,
+    };
+
+    try {
+      const response = await fetch(
+        "https://api-carbapradah.vercel.app/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Registration successful!");
+        window.location.href = "/login";
+      } else {
+        alert(`Error: ${data.message || "Something went wrong!"}`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to register. Please try again.");
     }
   });
 });
