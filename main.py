@@ -49,6 +49,9 @@ async def login_callback():
     refresh_token = request.args.get("refresh_token")
     expires_at = request.args.get("expires_at")
 
+    print(request)
+    print(request.args)
+
     if not access_token or not refresh_token:
         return redirect("/login?error=missing_token")
 
