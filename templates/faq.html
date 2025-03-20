@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FAQ Section</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ url_for('static', filename='faq.js') }}" defer></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='faq.css') }}" />
+    <script src="{{ url_for('static', filename='faq.js', v=1) }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='faq.css', v=1) }}" />
   </head>
   <body>
     <section class="faq-section">
@@ -33,7 +33,8 @@
             <span class="toggle-icon">▼</span>
           </div>
           <div class="faq-answer">
-            <p>
+            <p styles="text-align: left";> 
+              
               We use ESP32 with MQ135 sensors to measure air quality near the soil.<br>
               The data is processed using Random Forest Regression to predict carbon 
               levels.
