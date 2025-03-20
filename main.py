@@ -99,6 +99,11 @@ async def faq():
     return await render_template("faq.html")
 
 
+@app.route("/maps")
+async def maps():
+    return await render_template("maps.html")
+
+
 @app.route("/reset-password")
 async def reset_password():
     return await render_template("reset-password.html")
