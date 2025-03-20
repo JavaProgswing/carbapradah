@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function validatePasswords() {
     if (passwordInput.value.length < 6) {
-      passwordError.textContent =
-        "Password must be at least 6 characters long!";
+      passwordError.textContent = "Password must be at least 6 characters long!";
       return false;
     }
     if (passwordInput.value !== confirmPasswordInput.value) {
@@ -21,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     passwordError.textContent = "";
     return true;
   }
+  
 
   function toggleVisibility(inputField, icon) {
     if (inputField.type === "password") {
@@ -68,13 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Registration successful!");
         window.location.href = "/login";
       } else {
-        if (response.status === 409) {
-          alert(
-            "Username or email already exists. Please try again with different credentials."
-          );
-        } else {
-          alert(`Error: ${data.message || "Something went wrong!"}`);
-        }
+        alert(`Error: ${data.message || "Something went wrong!"}`);
       }
     } catch (error) {
       console.error("Error:", error);
