@@ -101,3 +101,23 @@ h2 {
 .register-text a:hover {
   text-decoration: underline;
 }
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  flex: 1;
+  padding-right: 40px; 
+}
+
+/* Position the Eye Icon */
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #fff;
+}
