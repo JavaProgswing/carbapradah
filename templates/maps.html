@@ -9,7 +9,9 @@
     <p id="output"></p>
 
     <script>
-        let startTime, endTime, startCoords, endCoords;
+        let tracking = false;
+        let positions = [];
+        let startTime;
 
         function getLocation(callback) {
             if (navigator.geolocation) {
@@ -22,39 +24,59 @@
         }
 
         function startTracking() {
-            getLocation(position => {
-                startTime = new Date();
-                startCoords = position.coords;
-                document.getElementById("output").innerHTML = "Tracking started...";
-            });
+            positions = [];
+            startTime = new Date();
+            tracking = true;
+
+            // Track location every 5 seconds
+            window.tracker = setInterval(() => {
+                getLocation(position => {
+                    positions.push({
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude,
+                        time: new Date()
+                    });
+                });
+            }, 5000);
+
+            document.getElementById("output").innerHTML = "Tracking started...";
         }
 
         function stopTracking() {
-            getLocation(position => {
-                endTime = new Date();
-                endCoords = position.coords;
+            clearInterval(window.tracker);
+            tracking = false;
+            let endTime = new Date();
 
-                // Calculate distance using Haversine formula
-                let R = 6371; // Earth radius in km
-                let dLat = (endCoords.latitude - startCoords.latitude) * (Math.PI / 180);
-                let dLon = (endCoords.longitude - startCoords.longitude) * (Math.PI / 180);
-                let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                        Math.cos(startCoords.latitude * (Math.PI / 180)) * 
-                        Math.cos(endCoords.latitude * (Math.PI / 180)) * 
-                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                let distance = R * c; // Distance in km
+            // Calculate actual distance traveled
+            let totalDistance = 0;
+            for (let i = 1; i < positions.length; i++) {
+                totalDistance += haversine(
+                    positions[i - 1].lat, positions[i - 1].lon,
+                    positions[i].lat, positions[i].lon
+                );
+            }
 
-                let timeTaken = (endTime - startTime) / 1000 / 60; // Convert to minutes
-                let avgSpeed = distance / (timeTaken / 60); // km/h
+            let timeTaken = (endTime - startTime) / 1000 / 60; // Convert to minutes
+            let avgSpeed = totalDistance / (timeTaken / 60); // km/h
 
-                document.getElementById("output").innerHTML = 
-                    `Start: (${startCoords.latitude}, ${startCoords.longitude})<br>
-                    End: (${endCoords.latitude}, ${endCoords.longitude})<br>
-                    Distance: ${distance.toFixed(2)} km<br>
-                    Time Taken: ${timeTaken.toFixed(2)} mins<br>
-                    Average Speed: ${avgSpeed.toFixed(2)} km/h`;
-            });
+            document.getElementById("output").innerHTML = 
+                `Distance traveled: ${totalDistance.toFixed(2)} km<br>
+                Time Taken: ${timeTaken.toFixed(2)} mins<br>
+                Average Speed: ${avgSpeed.toFixed(2)} km/h`;
+        }
+
+        function haversine(lat1, lon1, lat2, lon2) {
+            let R = 6371; // Earth radius in km
+            let dLat = (lat2 - lat1) * Math.PI / 180;
+            let dLon = (lon2 - lon1) * Math.PI / 180;
+
+            let a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(lat1 * Math.PI / 180) * 
+                    Math.cos(lat2 * Math.PI / 180) * 
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+            return R * c; // Distance in km
         }
     </script>
 </body>
