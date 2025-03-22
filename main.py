@@ -14,9 +14,7 @@ app.secret_key = "vttiic810xUU2J9aOKcYCXQSFH1e12bxGlcY3MNhookMNAK1sI"
 async def refresh_token():
     if session.get("logged_in"):
         expires_at = session.get("expires_at", 0)
-        if (
-            datetime.utcnow().timestamp() > expires_at - 60
-        ):  # Refresh 1 min before expiry
+        if datetime.utcnow().timestamp() > expires_at - 60:
             try:
                 session_data = supabase.auth.refresh_session()
                 session["expires_at"] = session_data.session.expires_at
@@ -30,6 +28,7 @@ async def refresh_token():
 async def index():
     if session.get("logged_in"):
         return await render_template("index.html", logged_in=True)
+
     return await render_template("index.html")
 
 
@@ -50,9 +49,6 @@ async def login_callback():
     refresh_token = request.args.get("refresh_token")
     expires_at = request.args.get("expires_at")
 
-    print(request)
-    print(request.args)
-
     if not access_token or not refresh_token:
         return redirect("/login?error=missing_token")
 
@@ -62,14 +58,14 @@ async def login_callback():
         print(user)
         if user:
             session["user"] = {
+                "id": user.id,
                 "email": user.email,
                 "role": user.role,
-                "name": user.user_metadata.get("full_name"),
                 "created_at": user.created_at,
                 "confirmed_at": user.confirmed_at,
             }
             session["logged_in"] = True
-            session["expires_at"] = int(expires_at)  # Store expiration timestamp
+            session["expires_at"] = int(expires_at)
             return redirect("/")
         else:
             return redirect("/login?error=invalid_user")
@@ -91,7 +87,7 @@ async def agriculture():
     if not session.get("logged_in"):
         return redirect("/")
 
-    return await render_template("agriculture.html")
+    return await render_template("agriculture.html", user=session.get("user"))
 
 
 @app.route("/register")

@@ -25,39 +25,38 @@ document.addEventListener("DOMContentLoaded", function () {
   checkScroll(); // Run initially
 });
 
-
 //Hamburger Menu
-document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.querySelector('.hamburger-menu');
-  const navLinks = document.querySelector('.nav-links');
-  const navLinksItems = document.querySelectorAll('.nav-links a');
-  
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.querySelector(".hamburger-menu");
+  const navLinks = document.querySelector(".nav-links");
+  const navLinksItems = document.querySelectorAll(".nav-links a");
+
   // Toggle mobile menu
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
+  hamburger.addEventListener("click", function () {
+    hamburger.classList.toggle("active");
+    navLinks.classList.toggle("active");
   });
-  
+
   // Close mobile menu when clicking a nav link
-  navLinksItems.forEach(link => {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('active');
-      navLinks.classList.remove('active');
+  navLinksItems.forEach((link) => {
+    link.addEventListener("click", function () {
+      hamburger.classList.remove("active");
+      navLinks.classList.remove("active");
     });
   });
-  
+
   // Add delay to each nav link for staggered animation
   navLinksItems.forEach((link, index) => {
     link.style.transitionDelay = `${0.1 * (index + 1)}s`;
   });
-  
+
   // Navbar scroll effect (keeping your existing functionality)
-  window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
+  window.addEventListener("scroll", function () {
+    const navbar = document.querySelector(".navbar");
     if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
+      navbar.classList.add("scrolled");
     } else {
-      navbar.classList.remove('scrolled');
+      navbar.classList.remove("scrolled");
     }
   });
 });

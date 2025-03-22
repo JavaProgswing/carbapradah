@@ -3,20 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>कार्बप्रदाः</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>कर्बप्रद:</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="{{ url_for('static', filename='main.js', v=1) }}" defer></script>
+    <script
+      src="{{ url_for('static', filename='main.js', v=1) }}"
+      defer
+    ></script>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='main.css', v=2) }}"
     />
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico', v=1) }}">
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='images/favicon.ico', v=1) }}"
+    />
   </head>
   <body>
     <div id="navbar">
       <div class="navbar">
-        <div class="logo">कर्बप्रद::</div>
+        <div class="logo">कर्बप्रद:</div>
         <div class="hamburger-menu">
           <div class="bar"></div>
           <div class="bar"></div>
@@ -25,9 +32,9 @@
         <div class="nav-links">
           <a href="#">Home</a>
           {% if logged_in %}
-            <a href="/logout">Logout</a>
+          <a href="/logout">Logout</a>
           {% else %}
-            <a href="/login">Login</a>
+          <a href="/login">Login</a>
           {% endif %}
           <a href="#about">About Us</a>
           <a href="/faq">FAQ</a>
@@ -53,31 +60,33 @@
     </a>
 
     <!-- Smart Soil Monitoring & Predictive Analytics Section -->
-    <div
-      class="section bg-image fade-in"
-      style="background-image: url('static/images/agriculture.jpg')"
-    >
-      <div class="overlay"></div>
-      <div class="content">
-        <p class="title">🌱 Agriculture</p>
-        <div class="info-box">
-          <article>
-            <strong>1️⃣ IoT-Based Real-Time Monitoring</strong>
-            📡 Sensors: Soil Moisture, Temperature, MQ-135 VOC.
-            📶 Connectivity: ESP32 transmits data via Wi-Fi to Firebase.
-  
-            <strong>2️⃣ Machine Learning Insights</strong>
-            🤖 Models: Crop Yield Prediction, Irrigation Optimization.
-  
-            <strong>3️⃣ Farmer’s Dashboard</strong>
-            📊 Real-time soil data and ML predictions.
-  
-            <strong>4️⃣ Smart Alerts</strong>
-            📢 Customizable thresholds and notifications.
-          </article>
+    <a href="/agriculture" class="section-link">
+      <div
+        class="section bg-image fade-in"
+        style="background-image: url('static/images/agriculture.jpg')"
+      >
+        <div class="overlay"></div>
+        <div class="content">
+          <p class="title">🌱 Agriculture</p>
+          <div class="info-box">
+            <article>
+              <strong>1️⃣ IoT-Based Real-Time Monitoring</strong>
+              📡 Sensors: Soil Moisture, Temperature, MQ-135 VOC. 📶
+              Connectivity: ESP32 transmits data via Wi-Fi to Firebase.
+
+              <strong>2️⃣ Machine Learning Insights</strong>
+              🤖 Models: Crop Yield Prediction, Irrigation Optimization.
+
+              <strong>3️⃣ Farmer’s Dashboard</strong>
+              📊 Real-time soil data and ML predictions.
+
+              <strong>4️⃣ Smart Alerts</strong>
+              📢 Customizable thresholds and notifications.
+            </article>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
     <section
       id="about"
       class="section bg-image fade-in"
@@ -85,11 +94,11 @@
     >
       <div class="overlay"></div>
       <div class="content">
-        <h2 class="title">About कार्बप्रदाः</h2>
+        <h2 class="title">About कर्बप्रद:</h2>
         <div class="about-container">
           <div class="about-text">
             <p>
-              कार्बप्रदाः is an innovative platform designed to help individuals
+              कर्बप्रद: is an innovative platform designed to help individuals
               and businesses monitor, track, and reduce their carbon footprint
               across two critical sectors: Agriculture and Transportation.
             </p>

@@ -3,12 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Transport Section for {{user}}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ url_for('static', filename='faq.js', v=1) }}" defer></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='faq.css', v=1) }}" />
+    <title>Transport Form</title>
+    <link rel="stylesheet" href="transport.css" />
   </head>
   <body>
+    <div class="container">
+      <h2>Vehicle Registration</h2>
+      <form id="transport-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="{{user.email}}" readonly />
 
+        <label for="vehicle-type">Vehicle Type:</label>
+        <select id="vehicle-type" name="vehicle-type">
+          <option value="two-wheeler">Two Wheeler</option>
+          <option value="four-wheeler">Four Wheeler</option>
+          <option value="heavy-vehicle">Heavy Vehicle</option>
+        </select>
+
+        <label for="car-type">Fuel Type:</label>
+        <select id="car-type" name="car-type">
+          <option value="petrol">Petrol</option>
+          <option value="diesel">Diesel</option>
+          <option value="ev">EV</option>
+        </select>
+
+        <label for="vehicle-number">Vehicle Number:</label>
+        <input type="text" id="vehicle-number" name="vehicle-number" required />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script src="transport.js"></script>
   </body>
 </html>
