@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Login successful!");
         window.location.href = "/"; // Redirect to home page
       } else {
+        if (response.status === 422) {
+          alert(`Error: Enter a valid email address!`);
+          return;
+        }
+        
         alert(`Error: ${data.message || "Invalid credentials!"}`);
       }
     } catch (error) {
