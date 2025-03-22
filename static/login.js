@@ -38,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (response.status === 422) {
           alert(`Error: Enter a valid email address!`);
           return;
+        } else if (response.status === 403) {
+          alert(`Error: ${data.error}`);
+          return;
         }
 
         alert(`Error: ${data.message || "Invalid credentials!"}`);

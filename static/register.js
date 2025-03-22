@@ -65,13 +65,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
       if (response.ok) {
-        alert("Registration successful!");
+        alert("Check your email inbox for completing your registration.");
         window.location.href = "/login";
       } else {
         if (response.status === 409) {
           alert(
             "Username or email already exists. Please try again with different credentials."
           );
+          window.location.href = "/register";
         } else {
           alert(`Error: ${data.message || "Something went wrong!"}`);
         }
