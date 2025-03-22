@@ -55,7 +55,7 @@ async def login_callback():
     try:
         supabase.auth.set_session(access_token, refresh_token)
         user = supabase.auth.get_user().user
-        print(user)
+        
         if user:
             session["user"] = {
                 "id": user.id,
@@ -79,6 +79,8 @@ async def transport():
     if not session.get("logged_in"):
         return redirect("/")
 
+    print(session.get("user"))
+    print(session.get("user").email)
     return await render_template("transport.html", user=session.get("user"))
 
 
