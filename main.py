@@ -79,8 +79,6 @@ async def transport():
     if not session.get("logged_in"):
         return redirect("/")
 
-    print(session.get("user"))
-    print(session.get("user").email)
     return await render_template("transport.html", user=session.get("user"))
 
 
