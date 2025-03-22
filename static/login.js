@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const refresh_token = data["refresh_token"];
         const expires_at = data["expires_at"];
         window.location.href =
-          "/?access_token=" +
+          "/login-callback?access_token=" +
           access_token +
           "&refresh_token=" +
           refresh_token +
