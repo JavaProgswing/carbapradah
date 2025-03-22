@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ url_for('static', filename='login.js', v=2) }}" defer></script>
+    <script src="{{ url_for('static', filename='login.js', v=3) }}" defer></script>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='login.css', v=2) }}"
+      href="{{ url_for('static', filename='login.css', v=3) }}"
     />
   </head>
   <body>
@@ -40,6 +40,9 @@
 
         <p class="register-text">
           Don't have an account? <a href="/register">Register here</a>
+        </p>
+        <p class="register-text">
+          Forgon your Password? <a href="/forgotpassword">Change Password here</a>
         </p>
       </div>
     </div>
