@@ -13,12 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      data = {
-        vehicleType,
-        carType,
-        vehicleNumber,
-      };
-
-      
+      window.location.href = `/transportDashboard?vehicleType=${vehicleType}&carType=${carType}&vehicleNumber=${vehicleNumber}`;
     });
 });

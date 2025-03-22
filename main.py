@@ -21,7 +21,9 @@ async def refresh_token():
             except Exception:
                 session.pop("logged_in", None)
                 session.pop("user", None)
-                return await render_template("error.html", message="Session expired, please login again")
+                return await render_template(
+                    "error.html", message="Session expired, please login again"
+                )
 
 
 @app.route("/")
@@ -50,12 +52,14 @@ async def login_callback():
     expires_at = request.args.get("expires_at")
 
     if not access_token or not refresh_token:
-        return await render_template("error.html", message="Missing required fields(access_token, refresh_token)")
+        return await render_template(
+            "error.html", message="Missing required fields(access_token, refresh_token)"
+        )
 
     try:
         supabase.auth.set_session(access_token, refresh_token)
         user = supabase.auth.get_user().user
-        
+
         if user:
             session["user"] = {
                 "id": user.id,
@@ -71,7 +75,10 @@ async def login_callback():
             return await render_template("error.html", message="Invalid user found")
 
     except Exception as e:
-        return await render_template("error.html", message="Login failed with error: " + str(e))
+        return await render_template(
+            "error.html", message="Login failed with error: " + str(e)
+        )
+
 
 @app.route("/transport")
 async def transport():
@@ -79,6 +86,7 @@ async def transport():
         return redirect("/")
 
     return await render_template("transport.html", user=session.get("user"))
+
 
 @app.route("/transportDashboard")
 async def transportDashboard():
@@ -90,9 +98,17 @@ async def transportDashboard():
     vehicle_type = request.args.get("vehicle_type")
 
     if not car_type or not vehicle_number or not vehicle_type:
-        return await render_template("error.html", message="Missing required fields(car_type, vehicle_number, vehicle_type)")
-    
-    return await render_template("transportDashboard.html", user=session.get("user"))
+        return await render_template(
+            "error.html",
+            message="Missing required fields(car_type, vehicle_number, vehicle_type)",
+        )
+
+    return await render_template(
+        "transportDashboard.html",
+        user=session.get("user"),
+    )
+
+
 @app.route("/agriculture")
 async def agriculture():
     if not session.get("logged_in"):
