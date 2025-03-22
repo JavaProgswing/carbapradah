@@ -7,7 +7,7 @@ url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
 app = Quart(__name__)
-
+app.secret_key = "vttiic810xUU2J9aOKcYCXQSFH1e12bxGlcY3MNhookMNAK1sI"
 
 @app.before_request
 async def refresh_token():
@@ -71,7 +71,6 @@ async def login_callback():
 
     except Exception as e:
         return redirect(f"/login?error={str(e)}")
-
 
 @app.route("/transport")
 async def transport():
