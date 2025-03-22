@@ -13,13 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      console.log({
-        username: document.getElementById("username").value,
+      data = {
         vehicleType,
         carType,
         vehicleNumber,
-      });
+      };
 
-      alert("Form submitted successfully!");
+      
     });
 });

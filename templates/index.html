@@ -32,9 +32,9 @@
         <div class="nav-links">
           <a href="#">Home</a>
           {% if logged_in %}
-          <a href="/logout">Logout</a>
+            <a href="/logout">Logout</a>
           {% else %}
-          <a href="/login">Login</a>
+            <a href="/login">Login</a>
           {% endif %}
           <a href="#about">About Us</a>
           <a href="/faq">FAQ</a>
@@ -42,95 +42,89 @@
       </div>
     </div>
 
+
+
     <!-- Transport Section -->
     <a href="/transport" class="section-link">
-      <div
-        class="section bg-image fade-in"
-        style="background-image: url('static/images/transport.jpg')"
-      >
-        <div class="overlay"></div>
-        <div class="content">
-          <p class="title">🚜 Transport</p>
-          <p class="description">
-            Empowering farmers with real-time insights to detect and address
-            plant stress for sustainable growth.
-          </p>
-        </div>
+        <div class="section bg-image fade-in" style="background-image: url('static/images/transport.jpg')">
+            <div class="content">
+            <p class="title">🚜 Transport</p>
+            <p class="description">
+                Empowering farmers with real-time insights to detect and address
+                plant stress for sustainable growth.
+            </p>
+            </div>
       </div>
     </a>
 
     <!-- Smart Soil Monitoring & Predictive Analytics Section -->
-    <a href="/agriculture" class="section-link">
-      <div
+     <a href="/agriculture" class="section-link">
+        <div
         class="section bg-image fade-in"
         style="background-image: url('static/images/agriculture.jpg')"
       >
-        <div class="overlay"></div>
         <div class="content">
           <p class="title">🌱 Agriculture</p>
           <div class="info-box">
             <article>
-              <strong>1️⃣ IoT-Based Real-Time Monitoring</strong>
-              📡 Sensors: Soil Moisture, Temperature, MQ-135 VOC. 📶
-              Connectivity: ESP32 transmits data via Wi-Fi to Firebase.
-
-              <strong>2️⃣ Machine Learning Insights</strong>
-              🤖 Models: Crop Yield Prediction, Irrigation Optimization.
-
-              <strong>3️⃣ Farmer’s Dashboard</strong>
-              📊 Real-time soil data and ML predictions.
-
-              <strong>4️⃣ Smart Alerts</strong>
-              📢 Customizable thresholds and notifications.
-            </article>
+              <strong>IoT-Based Real-Time Monitoring</strong><br>
+              📡 Sensors: MQ-135 VOC. <br><br>
+              📶 Connectivity: ESP32 transmits data via Wi-Fi to Supabase. <br><br>
+              🤖 Models: Crop Yield Prediction, Irrigation Optimization. <br><br>
+              📊 Real-time data and ML predictions. <br><br>
+              📢 Customizable thresholds and notifications. <br><br>
+              </article>
+            </div>
           </div>
-        </div>
       </div>
     </a>
+
+
     <section
-      id="about"
-      class="section bg-image fade-in"
-      style="background-image: url(static/images/transport.jpg)"
+    id="about"
+    class="section bg-image fade-in"
+    style="background-image: url(static/images/transport.jpg)"
     >
-      <div class="overlay"></div>
-      <div class="content">
-        <h2 class="title">About कर्बप्रद:</h2>
-        <div class="about-container">
-          <div class="about-text">
+    <div class="content">
+      <p class="title">About कर्बप्रद:</p>
+      <div class="about-container">
+        <div class="about-text">
+          <p>
+            कर्बप्रद: is an innovative platform designed to help individuals
+            and businesses monitor, track, and reduce their carbon footprint
+            across two critical sectors: Agriculture and Transportation.
+          </p>
+          <p>
+            Our mission is to empower users with real-time data and actionable
+            insights to make sustainable choices and contribute to a greener
+            future.
+          </p>
+          <p>
+            Through advanced IoT sensors, machine learning algorithms, and
+            user-friendly dashboards, we provide comprehensive tools to
+            measure and minimize environmental impact.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <h3>40%</h3>
             <p>
-              कर्बप्रद: is an innovative platform designed to help individuals
-              and businesses monitor, track, and reduce their carbon footprint
-              across two critical sectors: Agriculture and Transportation.
-            </p>
-            <p>
-              Our mission is to empower users with real-time data and actionable
-              insights to make sustainable choices and contribute to a greener
-              future.
-            </p>
-            <p>
-              Through advanced IoT sensors, machine learning algorithms, and
-              user-friendly dashboards, we provide comprehensive tools to
-              measure and minimize environmental impact.
+              of global carbon emissions come from agriculture and
+              transportation
             </p>
           </div>
-          <div class="about-stats">
-            <div class="stat-box">
-              <h3>40%</h3>
-              <p>
-                of global carbon emissions come from agriculture and
-                transportation
-              </p>
-            </div>
-            <div class="stat-box">
-              <h3>15-30%</h3>
-              <p>
-                potential reduction in emissions with proper tracking and
-                optimization
-              </p>
-            </div>
+          <div class="stat-box">
+            <h3>15-30%</h3>
+            <p>
+              potential reduction in emissions with proper tracking and
+              optimization
+            </p>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+    
   </body>
-</html>
+  </html>
+  
