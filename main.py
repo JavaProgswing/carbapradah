@@ -9,6 +9,7 @@ supabase: Client = create_client(url, key)
 app = Quart(__name__)
 app.secret_key = "vttiic810xUU2J9aOKcYCXQSFH1e12bxGlcY3MNhookMNAK1sI"
 
+
 @app.before_request
 async def refresh_token():
     if session.get("logged_in"):
@@ -72,6 +73,7 @@ async def login_callback():
     except Exception as e:
         return redirect(f"/login?error={str(e)}")
 
+
 @app.route("/transport")
 async def transport():
     if not session.get("logged_in"):
@@ -103,9 +105,9 @@ async def maps():
     return await render_template("maps.html")
 
 
-@app.route("/reset-password")
-async def reset_password():
-    return await render_template("reset-password.html")
+@app.route("/forgot-password")
+async def forgot_password():
+    return await render_template("forgot-password.html")
 
 
 @app.route("/logout")

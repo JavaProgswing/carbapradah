@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="{{ url_for('static', filename='login.js', v=4) }}" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="{{ url_for('static', filename='login.js', v=4) }}"
+      defer
+    ></script>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='login.css', v=4) }}"
@@ -19,20 +22,12 @@
         <form id="loginForm">
           <div class="input-group">
             <label for="username">Email</label>
-            <input
-              type="text"
-              id="username"
-              required
-            />
+            <input type="text" id="username" required />
           </div>
 
           <div class="input-group">
             <label for="password">Password</label>
-            <input
-              type="current-password"
-              id="password"
-              required
-            />
+            <input type="current-password" id="password" required />
           </div>
 
           <button type="submit" class="login-btn">Login</button>
@@ -42,7 +37,8 @@
           Don't have an account? <a href="/register">Register here</a>
         </p>
         <p class="register-text">
-          Forgon your Password? <a href="/forgotpassword">Change Password here</a>
+          Forgon your Password?
+          <a href="/forgot-password">Change Password here</a>
         </p>
       </div>
     </div>
