@@ -41,8 +41,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// Show/Hide Password
+
 function togglePassword() {
   const passwordField = document.getElementById("password");
   passwordField.type = passwordField.type === "password" ? "text" : "password";
 }
+document.addEventListener('DOMContentLoaded', function() {
+  // Toggle new password visibility
+  const toggleNewPassword = document.getElementById('toggle-new-password');
+  const newPasswordInput = document.getElementById('newPassword');
+  
+  toggleNewPassword.addEventListener('click', function() {
+    const type = newPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    newPasswordInput.setAttribute('type', type);
+    this.textContent = type === 'password' ? '👁️‍🗨️' : '👁️';
+  });
+  
+  // Toggle confirm password visibility
+  const toggleConfirmPassword = document.getElementById('toggle-confirm-password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  
+  toggleConfirmPassword.addEventListener('click', function() {
+    const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmPasswordInput.setAttribute('type', type);
+    this.textContent = type === 'password' ? '👁️‍🗨️' : '👁️';
+  });
+  
+  // Form submission with password matching validation
+  const resetForm = document.getElementById('resetPasswordForm');
+  
+  resetForm.addEventListener('submit', function(e) {
+    const newPassword = newPasswordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+    
+    if (newPassword !== confirmPassword) {
+      e.preventDefault();
+      alert('Passwords do not match. Please try again.');
+    }
+  });
+});
