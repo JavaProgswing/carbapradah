@@ -2,12 +2,20 @@ from quart import Quart, render_template, redirect, session, request
 from supabase import create_client, Client
 import os
 from datetime import datetime
+import traceback
 
 url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 supabase: Client = create_client(url, key)
 app = Quart(__name__)
 app.secret_key = "vttiic810xUU2J9aOKcYCXQSFH1e12bxGlcY3MNhookMNAK1sI"
+
+
+def get_traceback(error):
+    etype = type(error)
+    trace = error.__traceback__
+    lines = traceback.format_exception(etype, error, trace)
+    return "".join(lines)
 
 
 @app.before_request
@@ -18,7 +26,8 @@ async def refresh_token():
             try:
                 session_data = supabase.auth.refresh_session()
                 session["expires_at"] = session_data.session.expires_at
-            except Exception:
+            except Exception as e:
+                print(get_traceback(e))
                 session.pop("logged_in", None)
                 session.pop("user", None)
                 return await render_template(
