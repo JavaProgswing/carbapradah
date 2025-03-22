@@ -24,14 +24,22 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
 
       if (response.ok) {
-        alert("Login successful!");
-        window.location.href = "/"; // Redirect to home page
+        const access_token = data["access_token"];
+        const refresh_token = data["refresh_token"];
+        const expires_at = data["expires_at"];
+        window.location.href =
+          "/?access_token=" +
+          access_token +
+          "&refresh_token=" +
+          refresh_token +
+          "&expires_at=" +
+          expires_at;
       } else {
         if (response.status === 422) {
           alert(`Error: Enter a valid email address!`);
           return;
         }
-        
+
         alert(`Error: ${data.message || "Invalid credentials!"}`);
       }
     } catch (error) {
