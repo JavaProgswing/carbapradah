@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: username, password }),
+        body: JSON.stringify({ email: username, password: password }),
       });
 
       const data = await response.json();
