@@ -8,8 +8,7 @@
 }
 
 body {
-  background: url("pexels-500photos-com-15338-68629.jpg") no-repeat center
-    center/cover;
+  background: url("images/transport_1.jpg") no-repeat center center/cover;
   height: 100vh;
   display: flex;
   justify-content: center;
