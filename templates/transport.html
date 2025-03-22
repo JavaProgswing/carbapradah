@@ -6,9 +6,9 @@
     <title>Transport Form</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='transport.css', v=2) }}"
+      href="{{ url_for('static', filename='transport.css', v=3) }}"
     />
-    <script src="{{ url_for('static', filename='transport.js', v=2) }}"></script>
+    <script src="{{ url_for('static', filename='transport.js', v=3) }}"></script>
   </head>
   <body>
     <div class="container">
@@ -19,7 +19,7 @@
           type="text"
           id="username"
           name="username"
-          value="{{user['email']}}"
+          value="{{user.email}}"
           readonly
         />
 
