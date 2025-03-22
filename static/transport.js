@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("username").value = "FetchedUser123";
-
   document
     .getElementById("transport-form")
     .addEventListener("submit", function (event) {

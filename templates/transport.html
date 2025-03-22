@@ -15,7 +15,13 @@
       <h2>Vehicle Registration</h2>
       <form id="transport-form">
         <label for="username">Username:</label>
-        <input type="text" id="username" name="{{user['email']}}" readonly />
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value="{{user['email']}}"
+          readonly
+        />
 
         <label for="vehicle-type">Vehicle Type:</label>
         <select id="vehicle-type" name="vehicle-type">
