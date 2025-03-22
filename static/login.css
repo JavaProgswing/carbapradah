@@ -101,3 +101,23 @@ h2 {
 .register-text a:hover {
   text-decoration: underline;
 }
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+#password {
+  width: 100%;
+  padding-right: 35px;
+  box-sizing: border-box;
+}

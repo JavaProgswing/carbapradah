@@ -1,5 +1,23 @@
+// Show/Hide Password
+function togglePassword() {
+  const passwordField = document.getElementById("password");
+  passwordField.type = passwordField.type === "password" ? "text" : "password";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
+  const togglePassword = document.getElementById("toggle-password");
+  const passwordInput = document.getElementById("password");
+
+  togglePassword.addEventListener("click", function () {
+    // Toggle between password and text
+    const type =
+      passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", type);
+
+    // Change the eye icon
+    this.textContent = type === "password" ? "👁️‍🗨️" : "👁️";
+  });
 
   loginForm.addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form submission
@@ -43,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
-        alert(`Error: ${data.message || "Invalid credentials!"}`);
+        alert(`Error: Invalid credentials!`);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -51,9 +69,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-
-// Show/Hide Password
-function togglePassword() {
-  const passwordField = document.getElementById("password");
-  passwordField.type = passwordField.type === "password" ? "text" : "password";
-}

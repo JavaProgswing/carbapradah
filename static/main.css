@@ -285,6 +285,7 @@ body {
 }
 
 .stat-box {
+  display: flex;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 2rem;
   border-radius: 10px;

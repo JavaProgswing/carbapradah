@@ -141,6 +141,11 @@ async def maps():
     return await render_template("maps.html")
 
 
+@app.route("/GPSTracker")
+async def GPSTracker():
+    return await render_template("GPSTracker.html")
+
+
 @app.route("/forgot-password")
 async def forgot_password():
     return await render_template("forgot-password.html")
