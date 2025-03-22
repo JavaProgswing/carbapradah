@@ -58,12 +58,10 @@ async def login_callback():
 
     try:
         supabase.auth.set_session(access_token, refresh_token)
-        user = supabase.auth.get_user()
+        user = supabase.auth.get_user().user
 
         if user:
-            session["user"] = (
-                user  # Store user info safely (avoid storing tokens in session)
-            )
+            session["user"] = user
             session["logged_in"] = True
             session["expires_at"] = int(expires_at)  # Store expiration timestamp
             return redirect("/")
