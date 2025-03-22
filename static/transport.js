@@ -13,6 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      window.location.href = `/transportDashboard?vehicleType=${vehicleType}&carType=${carType}&vehicleNumber=${vehicleNumber}`;
+      window.location.href = `/transportDashboard?vehicle_type=${vehicleType}&car_type=${carType}&vehicle_number=${vehicleNumber}`;
     });
 });
