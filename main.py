@@ -109,7 +109,7 @@ async def transportDistanceForm():
             message="Missing required fields(car_type, vehicle_number, vehicle_type)",
         )
 
-    if car_type not in ["petrol", "diesel", "ev"]:
+    if car_type not in ["petrol", "diesel", "ev", "LPG", "CNG"]:
         return await render_template(
             "error.html", message="Invalid car type, must be petrol, diesel or electric"
         )
@@ -131,7 +131,13 @@ async def transportDistanceForm():
 
 def calculateCarbonEmission(car_type, vehicle_type, distance):
     fuel_efficiency = {"two-wheeler": 50, "four-wheeler": 15, "heavy-vehicle": 5}
-    emission_factor = {"petrol": 2.31, "diesel": 2.68, "ev": 0}
+    emission_factor = {
+        "petrol": 2.27,
+        "diesel": 3.17,
+        "LPG": 1.66,
+        "CNG": 0.05,
+        "ev": 0,
+    }
     return (distance / fuel_efficiency[vehicle_type]) * emission_factor[car_type]
 
 
