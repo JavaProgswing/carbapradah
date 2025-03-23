@@ -56,6 +56,8 @@ async def login_callback():
     access_token = request.args.get("access_token")
     refresh_token = request.args.get("refresh_token")
     expires_at = request.args.get("expires_at")
+    print(request.args)
+    print(access_token, refresh_token, expires_at)
 
     if access_token is None or refresh_token is None:
         return await render_template(
