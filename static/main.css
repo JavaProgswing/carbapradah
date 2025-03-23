@@ -11,6 +11,12 @@ body {
   color: white;
 }
 
+.number{
+color: #3cff97;
+font-size: 40px ;
+font-weight: bold;
+}
+
 /* Transparent Navbar */
 .navbar {
   position: fixed;
@@ -285,9 +291,12 @@ body {
 }
 
 .stat-box {
-  display: flex;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 2rem;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
   border-radius: 10px;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.1);

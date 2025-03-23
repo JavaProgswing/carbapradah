@@ -222,14 +222,14 @@ async def faq():
     return await render_template("faq.html")
 
 
-@app.route("/maps")
-async def maps():
-    return await render_template("maps.html")
-
-
 @app.route("/GPSTracker")
 async def GPSTracker():
     return await render_template("GPSTracker.html")
+
+
+@app.route("/maps")
+async def maps():
+    return await render_template("maps.html")
 
 
 @app.route("/forgot-password")
