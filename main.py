@@ -57,11 +57,8 @@ async def login_callback():
     refresh_token = request.args.get("refresh_token")
     expires_at = request.args.get("expires_at")
 
-    print(request.args)
     if access_token is None or refresh_token is None:
-        return await render_template(
-            "error.html", message="Missing required fields(access_token, refresh_token)"
-        )
+        return redirect("/login")
 
     try:
         supabase.auth.set_session(access_token, refresh_token)
@@ -86,12 +83,14 @@ async def login_callback():
             "error.html", message="Login failed with error: " + str(e)
         )
 
+
 @app.route("/userInfo")
 async def userInfo():
     if not session.get("logged_in"):
         return redirect("/")
 
     return session.get("user"), 200
+
 
 @app.route("/transport")
 async def transport():
