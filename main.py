@@ -51,9 +51,6 @@ async def login():
     return await render_template("login.html")
 
 
-# access_token=eyJhbGciOiJIUzI1NiIsImtpZCI6InpiZzBZNzhob29tejloWnYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2NkcW50bnhoeXBwd2hua2JzbXh1LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJlOTQxNGQxMC1lNjRiLTRjOWYtYjJkNS1mNWMzYmQzYjJiOWEiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzQyMDU2ODQwLCJpYXQiOjE3NDIwNTMyNDAsImVtYWlsIjoieWFzaGFzdmlhbGxlbmt1anVyQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJ5YXNoYXN2aWFsbGVua3VqdXJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiZTk0MTRkMTAtZTY0Yi00YzlmLWIyZDUtZjVjM2JkM2IyYjlhIn0sInJvbGUiOiJhdXRoZW50aWNhdGVkIiwiYWFsIjoiYWFsMSIsImFtciI6W3sibWV0aG9kIjoib3RwIiwidGltZXN0YW1wIjoxNzQyMDUzMjQwfV0sInNlc3Npb25faWQiOiI1ZjBhNThmOC1jMDQ0LTQ1YTctOTE4NC0xNDRmODhmYjMzZDUiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.sjAiubAfI9ck0jEk3_GoHlBcutSs9UpP5xURf9LK98g
-# expires_at=1742056840
-# refresh_token=Qf45LkkemAsJjubeFDyMwQ
 @app.route("/login-callback")
 async def login_callback():
     access_token = request.args.get("access_token")
@@ -97,8 +94,8 @@ async def transport():
     return await render_template("transport.html", user=session.get("user"))
 
 
-@app.route("/transportDashboard")
-async def transportDashboard():
+@app.route("/transportDistanceForm")
+async def transportDistanceForm():
     if not session.get("logged_in"):
         return redirect("/")
 
@@ -112,6 +109,71 @@ async def transportDashboard():
             message="Missing required fields(car_type, vehicle_number, vehicle_type)",
         )
 
+    if car_type not in ["petrol", "diesel", "ev"]:
+        return await render_template(
+            "error.html", message="Invalid car type, must be petrol, diesel or electric"
+        )
+
+    if vehicle_type not in ["two-wheeler", "four-wheeler", "heavy-vehicle"]:
+        return await render_template(
+            "error.html",
+            message="Invalid vehicle type, must be two-wheeler, four-wheeler or heavy-vehicle",
+        )
+
+    if len(vehicle_number) < 5:
+        return await render_template(
+            "error.html",
+            message="Invalid vehicle number, must be at least 5 characters",
+        )
+
+    return await render_template("transportDistanceForm.html", user=session.get("user"))
+
+
+def calculateCarbonEmission(car_type, vehicle_type, distance):
+    fuel_efficiency = {"two-wheeler": 50, "four-wheeler": 15, "heavy-vehicle": 5}
+    emission_factor = {"petrol": 2.31, "diesel": 2.68, "ev": 0}
+    return (distance / fuel_efficiency[vehicle_type]) * emission_factor[car_type]
+
+
+@app.route("/transportDashboard")
+async def transportDashboard():
+    if not session.get("logged_in"):
+        return redirect("/")
+
+    car_type = request.args.get("car_type")
+    vehicle_number = request.args.get("vehicle_number")
+    vehicle_type = request.args.get("vehicle_type")
+    distance = request.args.get("distance")
+
+    if not car_type or not vehicle_number or not vehicle_type:
+        return await render_template(
+            "error.html",
+            message="Missing required fields(car_type, vehicle_number, vehicle_type)",
+        )
+
+    if car_type not in ["petrol", "diesel", "ev"]:
+        return await render_template(
+            "error.html", message="Invalid car type, must be petrol, diesel or electric"
+        )
+
+    if vehicle_type not in ["two-wheeler", "four-wheeler", "heavy-vehicle"]:
+        return await render_template(
+            "error.html",
+            message="Invalid vehicle type, must be two-wheeler, four-wheeler or heavy-vehicle",
+        )
+
+    if len(vehicle_number) < 5:
+        return await render_template(
+            "error.html",
+            message="Invalid vehicle number, must be at least 5 characters",
+        )
+
+    if not distance or not distance.isdigit():
+        return await render_template(
+            "error.html",
+            message="Invalid field distance, must be a number and greater than 0",
+        )
+
     print(f"Logged in as {session['user']['email']}")
     print(f"User ID: {session['user']['id']}")
     result = (
@@ -121,10 +183,14 @@ async def transportDashboard():
         .order("timestamp", desc=True)
         .execute()
     )
-    print(result)
+
     return await render_template(
         "transportDashboard.html",
         user=session.get("user"),
+        carbon_emission=calculateCarbonEmission(car_type, vehicle_type, distance),
+        vehicle_number=vehicle_number,
+        vehicle_type=vehicle_type,
+        car_type=car_type,
     )
 
 
