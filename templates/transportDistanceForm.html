@@ -17,8 +17,27 @@
     <div class="container">
       <h2>Select an Option</h2>
       <div class="options">
-        <a href="/maps">Distance Calculator</a>
-        <a href="/GPSTracker">GPS Tracker</a>
+        <a href="#" id="maps-redirect">Distance Calculator</a>
+        <a href="#" id="gps-redirect">GPS Tracker</a>
+        <script>
+          document
+            .getElementById("maps-redirect")
+            .addEventListener("click", function (event) {
+              event.preventDefault();
+              const queryParams = window.location.search;
+              const newUrl = "/maps" + queryParams;
+              window.location.href = newUrl;
+            });
+
+          document
+            .getElementById("gps-redirect")
+            .addEventListener("click", function (event) {
+              event.preventDefault();
+              const queryParams = window.location.search;
+              const newUrl = "/gpsTracker" + queryParams;
+              window.location.href = newUrl;
+            });
+        </script>
       </div>
     </div>
   </body>

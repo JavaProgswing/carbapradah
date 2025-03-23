@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Distance Calculator with OpenStreetMap</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='maps.css', v=2) }}" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="{{ url_for('static', filename='maps.js', v=1) }}" defer></script>
+    <script src="{{ url_for('static', filename='maps.js', v=2) }}" defer></script>
   </head>
   <body>
     <h2>Enter Locations to Calculate Distance</h2>

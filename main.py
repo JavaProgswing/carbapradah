@@ -241,7 +241,7 @@ async def agriculture():
         return await render_template(
             "error.html", message="No data found for this user"
         )
-    data = result.get("data")
+    data = result.data
     last_record = data[0] if data else None
     second_last_record = data[1] if data else None
     percent_change = (
