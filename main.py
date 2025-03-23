@@ -57,6 +57,7 @@ async def login_callback():
     refresh_token = request.args.get("refresh_token")
     expires_at = request.args.get("expires_at")
 
+    print(request.args)
     if access_token is None or refresh_token is None:
         return await render_template(
             "error.html", message="Missing required fields(access_token, refresh_token)"
