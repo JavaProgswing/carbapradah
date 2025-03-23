@@ -1,7 +1,5 @@
 from quart import Quart, render_template, redirect, session, request
 from supabase import create_client, Client
-from fastapi.responses import JSONResponse
-from fastapi import status
 import os
 from datetime import datetime
 import traceback
@@ -163,7 +161,7 @@ async def transportUserInfo():
             float(request.args.get("distance_travelled")),
         ),
     }
-    return JSONResponse(status_code=status.HTTP_200_OK, content=data)
+    return data, 200
 
 
 @app.route("/transportDashboard")
