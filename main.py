@@ -112,6 +112,15 @@ async def transportDashboard():
             message="Missing required fields(car_type, vehicle_number, vehicle_type)",
         )
 
+    result = (
+        supabase.table("transport")
+        .select("userid, distance, carbonemitted, timestamp")
+        .eq("userid", session["user"]["id"])
+        .limit(1)
+        .order("timestamp", desc=True)
+        .execute()
+    )
+    print(result)
     return await render_template(
         "transportDashboard.html",
         user=session.get("user"),
@@ -123,6 +132,15 @@ async def agriculture():
     if not session.get("logged_in"):
         return redirect("/")
 
+    result = (
+        supabase.table("agriculture")
+        .select("co2, ch4, voc, timestamp, userid")
+        .eq("userid", session["user"]["id"])
+        .limit(1)
+        .order("timestamp", desc=True)
+        .execute()
+    )
+    print(result)
     return await render_template("agriculture.html", user=session.get("user"))
 
 
