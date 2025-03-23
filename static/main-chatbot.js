@@ -23,7 +23,7 @@ sendButton.addEventListener("click", () => {
   };
 
   // Set up the fetch request
-  fetch(`https://api-carbapradah.vercel.app/chatbot`, {
+  fetch(`https://api-carbapradah.vercel.app/getChatbotResponse`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
