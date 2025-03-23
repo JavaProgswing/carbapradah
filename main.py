@@ -193,7 +193,9 @@ async def transportDashboard():
     return await render_template(
         "transportDashboard.html",
         user=session.get("user"),
-        carbon_emission=calculateCarbonEmission(car_type, vehicle_type, distance),
+        carbon_emission=calculateCarbonEmission(
+            car_type, vehicle_type, float(distance)
+        ),
         vehicle_number=vehicle_number,
         vehicle_type=vehicle_type,
         car_type=car_type,
@@ -214,8 +216,20 @@ async def agriculture():
         .order("timestamp", desc=True)
         .execute()
     )
+    data = result.get("data", [])
+    last_record = data[0] if data else None
+    second_last_record = data[1] if data else None
+    percent_change = (
+        last_record["co2"] - second_last_record["co2"] if second_last_record else 0
+    )
     print(result)
-    return await render_template("agriculture.html", user=session.get("user"))
+    return await render_template(
+        "agriculture.html",
+        user=session.get("user"),
+        current_carbon=100,
+        percent_change=percent_change,
+        sensor_data=last_record["co2"],
+    )
 
 
 @app.route("/register")
