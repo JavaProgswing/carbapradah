@@ -1,5 +1,7 @@
 from quart import Quart, render_template, redirect, session, request
 from supabase import create_client, Client
+from fastapi.responses import JSONResponse
+from fastapi import status
 import os
 from datetime import datetime
 import traceback
@@ -142,6 +144,28 @@ def calculateCarbonEmission(car_type, vehicle_type, distance):
     return (distance / fuel_efficiency[vehicle_type]) * emission_factor[car_type]
 
 
+@app.route("/transportUserInfo")
+async def transportUserInfo():
+    if not session.get("logged_in"):
+        return redirect("/")
+
+    data = {
+        "id": session["user"]["id"],
+        "emailId": session["user"]["email"],
+        "vehicleNumber": request.args.get("vehicle_number"),
+        "vehicleType": request.args.get("vehicle_type"),
+        "fuelType": request.args.get("fuel_type"),
+        "distanceTravelled": request.args.get("distance_travelled"),
+        "averageSpeed": "-- km/h",
+        "carbonEmission": calculateCarbonEmission(
+            request.args.get("vehicle_type"),
+            request.args.get("fuel_type"),
+            float(request.args.get("distance_travelled")),
+        ),
+    }
+    return JSONResponse(status_code=status.HTTP_200_OK, content=data)
+
+
 @app.route("/transportDashboard")
 async def transportDashboard():
     if not session.get("logged_in"):
@@ -198,12 +222,6 @@ async def transportDashboard():
     return await render_template(
         "transportDashboard.html",
         user=session.get("user"),
-        carbon_emission=calculateCarbonEmission(
-            car_type, vehicle_type, float(distance)
-        ),
-        vehicle_number=vehicle_number,
-        vehicle_type=vehicle_type,
-        car_type=car_type,
     )
 
 
