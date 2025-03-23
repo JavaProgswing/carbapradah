@@ -111,7 +111,8 @@ async def transportDistanceForm():
 
     if car_type not in ["petrol", "diesel", "ev", "LPG", "CNG"]:
         return await render_template(
-            "error.html", message="Invalid car type, must be petrol, diesel or electric"
+            "error.html",
+            message="Invalid car type, must be petrol, diesel, Hybrid, CNG or electric",
         )
 
     if vehicle_type not in ["two-wheeler", "four-wheeler", "heavy-vehicle"]:
@@ -134,7 +135,7 @@ def calculateCarbonEmission(car_type, vehicle_type, distance):
     emission_factor = {
         "petrol": 2.27,
         "diesel": 3.17,
-        "LPG": 1.66,
+        "Hybrid": 1.0,
         "CNG": 0.05,
         "ev": 0,
     }
@@ -189,6 +190,10 @@ async def transportDashboard():
         .order("timestamp", desc=True)
         .execute()
     )
+    if not result:
+        return await render_template(
+            "error.html", message="No data found for this user"
+        )
 
     return await render_template(
         "transportDashboard.html",
@@ -216,7 +221,11 @@ async def agriculture():
         .order("timestamp", desc=True)
         .execute()
     )
-    data = result.get("data", [])
+    if not result:
+        return await render_template(
+            "error.html", message="No data found for this user"
+        )
+    data = result.get("data")
     last_record = data[0] if data else None
     second_last_record = data[1] if data else None
     percent_change = (
