@@ -1,0 +1,202 @@
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #27ae60;
+  --background-color: #ecf0f1;
+  --card-color: #ffffff;
+  --text-color: #333333;
+  --accent-color: #3498db;
+  --danger-color: #e74c3c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+      grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: var(--card-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--secondary-color);
+  font-size: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.info-item {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  font-weight: bold;
+  color: var(--accent-color);
+  width: 150px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.value {
+  font-size: 1.1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.emissions-chart {
+  position: relative;
+  height: 250px;
+  margin-bottom: 40px; /* Add more space below for labels */
+}
+
+.emission-level {
+  height: 50%;
+  background: linear-gradient(to right, #27ae60, #f39c12, #e74c3c);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  transition: height 1s ease;
+}
+
+.emission-marker {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 8px;
+  background-color: #000;
+  transform: translateX(-50%);
+}
+
+.emission-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* Space between chart and labels */
+  width: 100%;
+  position: absolute;
+  bottom: -30px;
+}
+
+.emission-label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+}
+
+.emission-value {
+  font-size: 3rem;
+  text-align: center;
+  margin: 1rem 0;
+  color: var(--primary-color);
+}
+
+.emission-unit {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.emissions-tips {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--card-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tips-title {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.tips-list {
+  list-style-type: none;
+}
+
+.tips-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+
+.tips-list li:before {
+  content: "✓";
+  color: var(--secondary-color);
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.fuel-type-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}

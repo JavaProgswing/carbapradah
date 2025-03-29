@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Distance Calculator with OpenStreetMap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='maps.css', v=2) }}" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='maps.js', v=2) }}" defer></script>
+  </head>
+  <body>
+    <h2>Enter Locations to Calculate Distance</h2>
+
+    <label>Start Location:</label>
+    <input type="text" id="start" placeholder="New Delhi" />
+
+    <label>End Location:</label>
+    <input type="text" id="end" placeholder="Hyderabad" />
+
+    <button onclick="calculateDistance()">Calculate Distance</button>
+
+    <p id="distanceOutput"></p>
+
+    <div id="map" style="height: 500px; padding-top: 200px"></div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transport Distance Measurement</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='transportDistanceForm.css', v=1) }}"
+    />
+    <script
+      src="{{ url_for('static', filename='transportDistanceForm.js', v=1) }}"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Select an Option</h2>
+      <div class="options">
+        <a href="#" id="maps-redirect">Distance Calculator</a>
+        <a href="#" id="gps-redirect">GPS Tracker</a>
+        <script>
+          document
+            .getElementById("maps-redirect")
+            .addEventListener("click", function (event) {
+              event.preventDefault();
+              const queryParams = window.location.search;
+              const newUrl = "/maps" + queryParams;
+              window.location.href = newUrl;
+            });
+
+          document
+            .getElementById("gps-redirect")
+            .addEventListener("click", function (event) {
+              event.preventDefault();
+              const queryParams = window.location.search;
+              const newUrl = "/GPSTracker" + queryParams;
+              window.location.href = newUrl;
+            });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

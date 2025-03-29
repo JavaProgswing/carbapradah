@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ Section</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="{{ url_for('static', filename='faq.js', v=1) }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='faq.css', v=1) }}" />
+  </head>
+  <body>
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>How does this system help me as a farmer?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Our project helps monitor soil carbon emissions using IoT sensors (MQ135).<br>
+              It predicts emission levels and suggests ways to improve soil health.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>How does the system detect carbon emissions in my soil?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p style="text-align: left;"> 
+              
+              We use ESP32 with MQ135 sensors to measure air quality near the soil.<br>
+              The data is processed using Random Forest Regression to predict carbon 
+              levels.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>What actions can I take to reduce soil carbon emissions? </span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p style="text-align: left;"> 
+              You can:</br>
+              ✅ Use organic fertilizers<br>
+              ✅ Avoid over-tilling to reduce soil disturbance<br>
+              ✅ Implement carbon sequestration techniques like cover cropping<br>
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>How frequently should I check the emission data? </span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              It’s best to check weekly or after major farming activities like plowing or fertilization<br>
+              The dashboard updates in real time! 
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span> How does the system help reduce vehicle carbon emissions?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              The system helps reduce carbon emissions by:
+              Monitoring real-time emissions from distanced travelled by vehicles using gps and maps.
+              Predicting CO₂ emissions using an ML model (LightGBM) based on vehicle type and fuel type.
+              Providing alerts and recommendations when emissions exceed safe thresholds.
+            </p>
+          </div>
+        </div>
+
+         <!-- FAQ Item 6 -->
+         <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <span>Can this system track emissions from both fuel-based and electric vehicles (EVs)?</span>
+            <span class="toggle-icon">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>
+              Yes! The system tracks emissions for Fuel-based vehicles (Petrol, Diesel) based on fuel efficiency and distance travelled.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

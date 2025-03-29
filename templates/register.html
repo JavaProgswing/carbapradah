@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="{{ url_for('static', filename='register.js', v=2) }}"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='register.css', v=2) }}"
+    />
+  </head>
+  <body>
+    <div class="register-container">
+      <div class="register-box">
+        <h2>Register to कर्बप्रद:</h2>
+
+        <form id="registerForm">
+          <div class="input-group">
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter the username"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter the email"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <div class="password-container">
+              <input
+                type="current-password"
+                id="password"
+                name="password"
+                placeholder="Enter the password"
+                required
+              />
+              <span id="toggle-password" class="eye-icon">👁️‍🗨️</span>
+            </div>
+          </div>
+          <div class="input-group">
+            <div class="password-container">
+              <input
+                type="current-password"
+                id="confirm-password"
+                name="confirm-password"
+                placeholder="Enter the confirmed password"
+                required
+              />
+              <span id="toggle-confirm-password" class="eye-icon">👁️‍🗨️</span>
+            </div>
+          </div>
+          <p id="password-error" class="error-message"></p>
+
+          <button type="submit" class="register-btn">Register</button>
+        </form>
+
+        <p class="register-text">
+          Already have an account? <a href="/login">Login here</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

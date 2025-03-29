@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="{{ url_for('static', filename='login.js', v=7) }}"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='login.css', v=7) }}"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <h2>Login to कर्बप्रद:</h2>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="username">Email</label>
+            <input type="text" id="username" required />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input type="current-password" id="password" required />
+              <span id="toggle-password" class="eye-icon">👁️‍🗨️</span>
+            </div>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <p class="register-text">
+          Don't have an account? <a href="/register">Register here</a>
+        </p>
+        <p class="register-text">
+          Forgot your Password?
+          <a href="/forgot-password">Change Password here</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

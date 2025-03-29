@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Emissions Tracker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='transportDashboard.css', v=3) }}"
+    />
+    <script
+      src="{{ url_for('static', filename='transportDashboard.js', v=3) }}"
+      defer
+    ></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Carbon Emissions Tracker</h1>
+            <p class="subtitle">Monitor your vehicle's environmental impact</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="card">
+                <h2 class="card-title">User Details</h2>
+                <div class="user-info">
+                    <div class="info-item">
+                        <div class="label">User ID</div>
+                        <div class="value" id="userId">...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Email ID</div>
+                        <div class="value" id="emailId">...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Vehicle Number</div>
+                        <div class="value" id="vehicleNumber">...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Vehicle Type</div>
+                        <div class="value" id="vehicleType">...</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Fuel Type</div>
+                        <div class="value" style="display: flex; align-items: center;">
+                            <div class="fuel-type-icon" id="fuelIcon"></div>
+                            <span id="fuelTypeText">...</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Distance Travelled</div>
+                        <div class="value" id="distanceTravelled">... km</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="label">Average Speed</div>
+                        <div class="value" id="averageSpeed">.. km/h</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Carbon Emissions</h2>
+                <div class="emission-value">
+                    <span id="emissionAmount">...</span>
+                    <span class="emission-unit">g/km</span>
+                </div>
+                <div class="emissions-chart">
+                    <div class="emission-level" id="emissionBar">
+                        <div class="emission-marker" id="emissionMarker"></div>
+                    </div>
+                    <div class="emission-labels">
+                        <div class="emission-label">Low (0)</div>
+                        <div class="emission-label">Medium (150)</div>
+                        <div class="emission-label">High (300+)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="emissions-tips">
+            <h3 class="tips-title">Tips to Reduce Your Carbon Footprint</h3>
+            <ul class="tips-list">
+                <li>Maintain proper tire pressure to improve fuel efficiency</li>
+                <li>Remove excess weight from your vehicle</li>
+                <li>Drive at moderate speeds and avoid rapid acceleration</li>
+                <li>Consider carpooling or using public transport when possible</li>
+                <li>Service your vehicle regularly to maintain optimal performance</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

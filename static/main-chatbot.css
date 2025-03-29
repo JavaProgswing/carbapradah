@@ -1,0 +1,365 @@
+* {
+  margin: 0;
+  padding: 0;
+  /*font-family: "Poppins", sans-serif;*/
+  /*font-family: 'Playfair Display', serif;*/
+  font-family: "Chivo", sans-serif;
+
+  /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.form-box {
+  position: fixed;
+  bottom: -700px; /* Start from below the screen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 450px;
+  height: 700px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0; /* Initially set to fully transparent */
+  transition: bottom 2s ease, opacity 3s ease; /* Apply transitions */
+}
+
+h2 {
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+  position: absolute; /* Position the h2 absolutely */
+  top: 0; /* Position at the top */
+  left: 50%; /* Position at the center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  z-index: 2; /* Place h2 on top */
+  white-space: nowrap;
+  margin-top: 20px;
+}
+
+.inputbox {
+  position: relative;
+  /*margin: 30px 0;*/
+  width: 400px;
+  border-bottom: 2px solid #fff;
+  left: 50%; /* Position at the center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+}
+
+.inputbox label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1.25em;
+  pointer-events: none;
+  transition: 0.5s;
+  font-family: monospace;
+}
+
+.inputbox input {
+  width: 90%;
+  height: 50px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.15em;
+  padding: 0 35px 0 5px;
+  color: #fff;
+  font-family: monospace;
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #fff;
+  font-size: 1.2em;
+  top: 20px;
+}
+
+input:focus ~ label {
+  top: -1px;
+  visibility: hidden;
+  opacity: 0;
+}
+input:valid ~ label {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.forget {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 15px;
+  font-size: 0.9em;
+  color: #fff;
+}
+
+.forget label:nth-child(2) {
+  order: 1;
+}
+
+.forget label {
+  display: flex;
+  align-items: center;
+}
+
+.forget label input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.forget label a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.forget label a:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  background: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.resultbox {
+  position: relative;
+  margin: 30px 0;
+  width: 310px; /* Set a fixed width */
+  border: 2px solid #fff;
+  padding: 1px;
+  box-sizing: border-box; /* Include padding and border in width calculation */
+  overflow: hidden; /* Hide vertical overflow */
+  border-radius: 5px;
+}
+
+.resultbox label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1em;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.resultbox ion-icon {
+  position: absolute;
+  right: 8px;
+  color: #fff;
+  font-size: 1.2em;
+  top: 20px;
+}
+
+.resultbox p {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  padding: 0 35px 0 5px;
+  color: #fff;
+  overflow-y: auto; /* Enable vertical scrolling for overflow */
+  max-height: 150px; /* Set a maximum height for scrolling */
+  margin: 3px 2px 2px 3px;
+}
+
+.chat-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(25px); /* Apply stronger blur to the pseudo-element */
+  z-index: -1;
+}
+
+.chat-panel {
+  /* ... (existing styles) ... */
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  min-width: 390px;
+  max-width: 390px;
+  height: 500px;
+  margin: 10px; /* Reset margin */
+  padding: 10px; /* Reset padding */
+  border-radius: 5px;
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar-track {
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+
+  border-radius: 10px; /*font-family: "Poppins", sans-serif;*/
+  /*background-color: #F5F5F5;*/
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  /*background-color: #F5F5F5;*/
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  /*background-color: #555;*/
+  backdrop-filter: blur(50px);
+}
+
+.message-bubble {
+  position: relative;
+  border-radius: 20px;
+  padding: 10px 15px;
+  max-width: 80%;
+  margin-bottom: 10px;
+  clear: both;
+  overflow-wrap: break-word;
+  font-family: monospace;
+  font-size: 1.25em;
+  /*text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);*/
+  opacity: 0; /* Start with 0 opacity */
+  animation: fade-in 0.5s ease forwards; /* Apply the animation */
+}
+
+.message-bubble.sent {
+  float: right;
+  background-color: transparent; /* Set background to transparent */
+}
+
+.message-bubble.received {
+  float: left;
+  background-color: transparent; /* Set background to transparent */
+}
+
+.message-bubble.sent::after,
+.message-bubble.received::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Pointy indicator for sent messages */
+.message-bubble.sent::after {
+  right: -20px;
+  border: 10px solid transparent;
+  border-left-color: rgba(
+    240,
+    240,
+    240,
+    0.7
+  ); /* Set transparent color for the tail */
+  border-top-width: 0;
+  bottom: 10px;
+  z-index: -1;
+}
+
+/* Pointy indicator for received messages */
+.message-bubble.received::after {
+  left: -20px;
+  border: 10px solid transparent;
+  border-right-color: rgba(
+    240,
+    240,
+    240,
+    0.7
+  ); /* Set transparent color for the tail */
+  border-top-width: 0;
+  bottom: 10px;
+  z-index: -1;
+}
+
+/* Apply backdrop filter to blur the background */
+.message-bubble.sent,
+.message-bubble.received {
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  animation: fade-in 0.5s ease forwards; /* Apply the animation */
+}
+
+/* Fade-in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpAndFade {
+  to {
+    transform: translateY(0%); /* Move the form-box up */
+    opacity: 1; /* Fade in the form-box */
+  }
+}
+
+.chatbot-icon {
+  position: fixed;
+  bottom: 20px; /* Place it 20px above the bottom */
+  right: 20px; /* Place it 20px from the right edge */
+  background-color: #0084ff;
+  color: white;
+  font-size: 24px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chatbot-icon:hover {
+  background-color: #0073e6;
+}
+
+/* Chatbot Popup */
+.chatbot-popup {
+  display: none; /* Initially hidden */
+  position: fixed;
+  bottom: -394px; /* Place it just above the chatbot icon */
+  right: 20px; /* Align it to the right, same as the icon */
+  width: 450px;
+  height: 0%;
+  background: black;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.chatbot-popup.show {
+  display: block; /* Make the popup visible */
+  opacity: 1;
+  transition: opacity 0.5s ease; /* Smooth transition */
+}
